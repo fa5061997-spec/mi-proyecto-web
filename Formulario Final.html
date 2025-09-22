@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Solicitud de Creación de Código de Artículo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            transform: scale(1.1);
+        }
+        .notification {
+            transition: opacity 0.5s, transform 0.5s;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
+
+    <div class="w-full max-w-4xl bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-10">
+        
+        <!-- Encabezado del Formulario sin el logo -->
+        <div class="mb-8 text-center">
+            <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">
+                Solicitud de Creación de Código de Artículo
+            </h1>
+            <p class="text-gray-500 mt-2">Complete todos los campos requeridos para procesar su solicitud.</p>
+        </div>
+
+        <form id="article-form" class="space-y-8">
+
+            <!-- Sección 1: Datos del Solicitante -->
+            <fieldset class="border-t border-gray-200 pt-6">
+                <legend class="text-lg font-semibold text-gray-700 mb-4">1. Datos del Solicitante</legend>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="nombre_solicitante" class="block text-sm font-medium text-gray-600 mb-1">Nombre Completo <span class="text-red-500">*</span></label>
+                        <input type="text" id="nombre_solicitante" name="nombre_solicitante" required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                    </div>
+                    <div>
+                        <label for="departamento_solicitante" class="block text-sm font-medium text-gray-600 mb-1">Departamento <span class="text-red-500">*</span></label>
+                        <input type="text" id="departamento_solicitante" name="departamento_solicitante" required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                    </div>
+                    <div>
+                        <label for="fecha_solicitud" class="block text-sm font-medium text-gray-600 mb-1">Fecha <span class="text-red-500">*</span></label>
+                        <input type="date" id="fecha_solicitud" name="fecha_solicitud" required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Sección 2: Información del Artículo o Servicio -->
+            <fieldset class="border-t border-gray-200 pt-6">
+                <legend class="text-lg font-semibold text-gray-700 mb-4">2. Información del Artículo o Servicio</legend>
+                <div class="space-y-6">
+                    <div>
+                        <label for="nombre_articulo" class="block text-sm font-medium text-gray-600 mb-1">Nombre claro del artículo/servicio <span class="text-red-500">*</span></label>
+                        <input type="text" id="nombre_articulo" name="nombre_articulo" required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-150">
+                    </div>
+                    
+                    <!-- Campo de Empresa -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Empresa <span class="text-red-500">*</span></label>
+                        <div class="flex flex-wrap gap-x-6 gap-y-3">
+                            <div class="flex items-center"><input type="radio" name="empresa" value="ALZU" required class="mr-2 text-blue-600 focus:ring-blue-500"><label>ALZU</label></div>
+                            <div class="flex items-center"><input type="radio" name="empresa" value="ATF" class="mr-2 text-blue-600 focus:ring-blue-500"><label>ATF</label></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Tipo de artículo <span class="text-red-500">*</span></label>
+                        <div class="flex flex-wrap gap-x-6 gap-y-3">
+                            <div class="flex items-center"><input type="radio" name="tipo_articulo" value="Activo fijo" required class="mr-2 text-blue-600 focus:ring-blue-500"><label>Activo fijo</label></div>
+                            <div class="flex items-center"><input type="radio" name="tipo_articulo" value="Insumo de producción" class="mr-2 text-blue-600 focus:ring-blue-500"><label>Insumo de producción</label></div>
+                            <div class="flex items-center"><input type="radio" name="tipo_articulo" value="Material de oficina" class="mr-2 text-blue-600 focus:ring-blue-500"><label>Material de oficina</label></div>
+                            <div class="flex items-center"><input type="radio" name="tipo_articulo" id="tipo_producto" value="Producto terminado" class="mr-2 text-blue-600 focus:ring-blue-500"><label for="tipo_producto">Producto terminado</label></div>
+                            <div class="flex items-center"><input type="radio" name="tipo_articulo" value="Servicio" class="mr-2 text-blue-600 focus:ring-blue-500"><label>Servicio</label></div>
+                            <div class="flex items-center"><input type="radio" name="tipo_articulo" id="tipo_otro" value="otro" class="mr-2 text-blue-600 focus:ring-blue-500"><label for="tipo_otro">Otro</label><input name="tipo_articulo_otro" type="text" id="otro_tipo_input" class="ml-2 w-32 px-2 py-1 border-b border-gray-300 focus:outline-none focus:border-blue-500 transition duration-150" placeholder="Especificar" disabled></div>
+                        </div>
+                    </div>
+
+                    <div id="detalles_producto_terminado" class="hidden bg-blue-50 p-4 rounded-md border border-blue-200">
+                            <label class="block text-sm font-medium text-blue-800 mb-3">Detalles del Producto Terminado</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                                <input type="text" name="producto_marca" placeholder="Marca" class="w-full px-3 py-2 border border-blue-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                <input type="text" name="producto_sabor" placeholder="Sabor" class="w-full px-3 py-2 border border-blue-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                <input type="text" name="producto_gramaje" placeholder="Gramaje" class="w-full px-3 py-2 border border-blue-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                                <input type="text" name="producto_cliente" placeholder="Cliente" class="w-full px-3 py-2 border border-blue-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="unidad_medida" class="block text-sm font-medium text-gray-600 mb-1">Unidad de medida <span class="text-red-500">*</span></label>
+                            <input type="text" id="unidad_medida" name="unidad_medida" required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label for="bodega" class="block text-sm font-medium text-gray-600 mb-1">Bodegas de asignación <span class="text-red-500">*</span></label>
+                            <!-- El select para las bodegas es nuevo y se actualiza dinámicamente -->
+                            <select id="bodega" name="bodega" required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" disabled>
+                                <option value="" disabled selected>Seleccione una empresa primero</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-600 mb-2">Tipo de impuesto aplicable <span class="text-red-500">*</span></label>
+                        <div class="flex flex-wrap gap-x-6 gap-y-3">
+                            <div class="flex items-center"><input type="radio" name="tipo_impuesto" value="Exento" required class="mr-2 text-blue-600 focus:ring-blue-500"><label>Exento</label></div>
+                            <div class="flex items-center"><input type="radio" name="tipo_impuesto" value="IVA reducido (1%)" class="mr-2 text-blue-600 focus:ring-blue-500"><label>IVA reducido (1%)</label></div>
+                            <div class="flex items-center"><input type="radio" name="tipo_impuesto" value="IVA general (13%)" class="mr-2 text-blue-600 focus:ring-blue-500"><label>IVA general (13%)</label></div>
+                            <div class="flex items-center"><input type="radio" name="tipo_impuesto" id="imp_otro" value="otro" class="mr-2 text-blue-600 focus:ring-blue-500"><label for="imp_otro">Otro</label><input type="text" name="tipo_impuesto_otro" id="otro_impuesto_input" class="ml-2 w-32 px-2 py-1 border-b border-gray-300 focus:outline-none focus:border-blue-500" placeholder="Especificar" disabled></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
+                        <div>
+                            <label for="vida_util" class="block text-sm font-medium text-gray-600 mb-1">Vida útil (si aplica)</label>
+                            <div class="relative"><input type="number" id="vida_util" name="vida_util" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"><span class="absolute inset-y-0 right-4 flex items-center text-gray-500">años</span></div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-600 mb-2">¿Requiere manejo por lotes? <span class="text-red-500">*</span></label>
+                            <div class="flex gap-6 mt-1">
+                                <div class="flex items-center"><input type="radio" name="manejo_lotes" value="Sí" required class="mr-2 text-blue-600 focus:ring-blue-500"><label>Sí</label></div>
+                                <div class="flex items-center"><input type="radio" name="manejo_lotes" value="No" class="mr-2 text-blue-600 focus:ring-blue-500"><label>No</label></div>
+                            </div>
+                        </div>
+                         <div>
+                            <label class="block text-sm font-medium text-gray-600 mb-2">Origen del producto/servicio <span class="text-red-500">*</span></label>
+                            <div class="flex gap-6 mt-1">
+                                <div class="flex items-center"><input type="radio" name="origen" value="Nacional" required class="mr-2 text-blue-600 focus:ring-blue-500"><label>Nacional</label></div>
+                                <div class="flex items-center"><input type="radio" name="origen" value="Importado" class="mr-2 text-blue-600 focus:ring-blue-500"><label>Importado</label></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div><label for="observaciones" class="block text-sm font-medium text-gray-600 mb-1">Observaciones adicionales</label><textarea id="observaciones" name="observaciones" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea></div>
+                </div>
+            </fieldset>
+
+            <!-- Sección 3: Uso Exclusivo de Finanzas (oculta) -->
+            <fieldset class="hidden border-t border-gray-200 pt-6 bg-gray-50 p-6 rounded-lg">
+                <legend class="text-lg font-semibold text-gray-700 mb-4">3. Uso Exclusivo de Finanzas</legend>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div><label for="codigo_asignado" class="block text-sm font-medium text-gray-600 mb-1">Código asignado</label><input type="text" id="codigo_asignado" class="w-full px-4 py-2 bg-gray-200 border border-gray-300 rounded-md" readonly></div>
+                    <div><label for="nombre_responsable" class="block text-sm font-medium text-gray-600 mb-1">Nombre del responsable</label><input type="text" id="nombre_responsable" class="w-full px-4 py-2 bg-gray-200 border border-gray-300 rounded-md" readonly></div>
+                    <div><label for="fecha_creacion" class="block text-sm font-medium text-gray-600 mb-1">Fecha de creación</label><input type="text" id="fecha_creacion" class="w-full px-4 py-2 bg-gray-200 border border-gray-300 rounded-md" readonly></div>
+                    <div><label for="firma_finanzas" class="block text-sm font-medium text-gray-600 mb-1">Firma</label><div class="w-full h-28 bg-gray-200 border border-gray-300 rounded-md"></div></div>
+                </div>
+            </fieldset>
+
+            <div class="flex justify-end pt-4">
+                <button type="submit" id="submit-button" class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-200">
+                    <span class="flex items-center gap-2">Enviar Solicitud <i data-lucide="send-horizonal" class="h-5 w-5"></i></span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Notificaciones -->
+    <div id="notification" class="notification fixed top-5 right-5 bg-green-500 text-white py-3 px-6 rounded-lg shadow-xl opacity-0 transform translate-y-2">
+        ¡Solicitud enviada con éxito!
+    </div>
+    <div id="error-notification" class="notification fixed top-5 right-5 bg-red-500 text-white py-3 px-6 rounded-lg shadow-xl opacity-0 transform translate-y-2">
+        Hubo un error al enviar la solicitud.
+    </div>
+
+    <script type="module">
+        // Importar funciones de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        
+        // Variables globales para la configuración de Firebase y autenticación
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = {
+          apiKey: "AIzaSyDYoTckzhf3tOhTyM_Cpb0s2CABus3gSgo",
+          authDomain: "apertura-de-sku.firebaseapp.com",
+          projectId: "apertura-de-sku",
+          storageBucket: "apertura-de-sku.firebasestorage.app",
+          messagingSenderId: "985133103969",
+          appId: "1:985133103969:web:8189be9151a8821677e320",
+          measurementId: "G-HRLKDWPZ3X"
+        };
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // Función para mostrar notificaciones
+        function showNotification(isSuccess) {
+            const successNotif = document.getElementById('notification');
+            const errorNotif = document.getElementById('error-notification');
+
+            if (isSuccess) {
+                successNotif.classList.remove('opacity-0', 'translate-y-2');
+                setTimeout(() => successNotif.classList.add('opacity-0', 'translate-y-2'), 3000);
+            } else {
+                errorNotif.classList.remove('opacity-0', 'translate-y-2');
+                setTimeout(() => errorNotif.classList.add('opacity-0', 'translate-y-2'), 5000);
+            }
+        }
+        
+        // Datos de las bodegas
+        const bodegasData = {
+            ALZU: [
+                { value: 'BO01', text: 'BO01 : BODEGA MATERIA PRIMA' },
+                { value: 'BO02', text: 'BO02 : BODEGA SUMINISTROS' },
+                { value: 'BO03', text: 'BO03 : BODEGA MANTENIMIENTO' },
+                { value: 'BO04', text: 'BO04 : BODEGA PRODUCTO TERMINADO' },
+                { value: 'BO05', text: 'BO05 : BODEGA SUMINISTROS DE LIMPIEZA' },
+                { value: 'BO06', text: 'BO06 : BODEGA SUMINISTROS DE OFICINA' },
+                { value: 'BO07', text: 'BO07 : BODEGA SERVICIOS' },
+                { value: 'BO08', text: 'BO08 : BODEGA COMPRAS' },
+                { value: 'BO09', text: 'BO09 : BODEGA CALIDAD' },
+                { value: 'BO10', text: 'BO10 : Bodega Hormiguita' },
+                { value: 'BO11', text: 'BO11 : Bodega Piso' },
+                { value: 'BO12', text: 'BO12 : Activos Fijos' },
+                { value: 'BO13', text: 'BO13 : BODEGA PRODUCTO GENÉRICO' },
+                { value: 'BO14', text: 'BO14 : BODEGA DE MATERIA PRIMA AGRICOLA' }
+            ],
+            ATF: [
+                { value: 'BEXP', text: 'BEXP : Bodega P.T. Exportación' },
+                { value: 'BMAT', text: 'BMAT : Bodega Materiales' },
+                { value: 'BMPA', text: 'BMPA : Bodega MP Agrícola' },
+                { value: 'BPDV', text: 'BPDV : Bodega Producto Dañado Vencido' },
+                { value: 'BPRO', text: 'BPRO : Bodega Proceso' }
+            ]
+        };
+
+        // Función para actualizar el menú de bodegas
+        function updateBodegaDropdown(empresa) {
+            const selectBodega = document.getElementById('bodega');
+            // Habilita el select
+            selectBodega.disabled = false;
+            // Limpia las opciones anteriores
+            selectBodega.innerHTML = '';
+
+            // Agrega la opción por defecto
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Seleccione una bodega';
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+            selectBodega.appendChild(defaultOption);
+
+            // Llena el select con las opciones correctas
+            const bodegas = bodegasData[empresa] || [];
+            bodegas.forEach(bodega => {
+                const option = document.createElement('option');
+                option.value = bodega.value;
+                option.textContent = bodega.text;
+                selectBodega.appendChild(option);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            document.getElementById('fecha_solicitud').valueAsDate = new Date();
+
+            const tipoArticuloRadios = document.querySelectorAll('input[name="tipo_articulo"]');
+            const detallesProductoDiv = document.getElementById('detalles_producto_terminado');
+            const otroTipoInput = document.getElementById('otro_tipo_input');
+
+            tipoArticuloRadios.forEach(radio => {
+                radio.addEventListener('change', (event) => {
+                    const isProducto = document.getElementById('tipo_producto').checked;
+                    detallesProductoDiv.classList.toggle('hidden', !isProducto);
+                    
+                    const isOtro = document.getElementById('tipo_otro').checked;
+                    otroTipoInput.disabled = !isOtro;
+                    if(isOtro) otroTipoInput.focus(); else otroTipoInput.value = '';
+                });
+            });
+
+            const tipoImpuestoRadios = document.querySelectorAll('input[name="tipo_impuesto"]');
+            const otroImpuestoInput = document.getElementById('otro_impuesto_input');
+            tipoImpuestoRadios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                    const isOtro = document.getElementById('imp_otro').checked;
+                    otroImpuestoInput.disabled = !isOtro;
+                    if(isOtro) otroImpuestoInput.focus(); else otroImpuestoInput.value = '';
+                });
+            });
+            
+            // Event listener para los radio buttons de la empresa
+            const empresaRadios = document.querySelectorAll('input[name="empresa"]');
+            empresaRadios.forEach(radio => {
+                radio.addEventListener('change', (event) => {
+                    updateBodegaDropdown(event.target.value);
+                });
+            });
+
+
+            const form = document.getElementById('article-form');
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                
+                const submitButton = document.getElementById('submit-button');
+                submitButton.disabled = true;
+                submitButton.innerHTML = `<span class="flex items-center gap-2">Enviando... <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg></span>`;
+
+                try {
+                    // Autenticar de forma segura antes de enviar los datos
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+
+                    const formData = new FormData(form);
+                    const tipoArticulo = formData.get('tipo_articulo') === 'otro' ? formData.get('tipo_articulo_otro') : formData.get('tipo_articulo');
+                    const tipoImpuesto = formData.get('tipo_impuesto') === 'otro' ? formData.get('tipo_impuesto_otro') : formData.get('tipo_impuesto');
+
+                    const data = {
+                        solicitante: {
+                            nombre: formData.get('nombre_solicitante'),
+                            departamento: formData.get('departamento_solicitante'),
+                            fecha: formData.get('fecha_solicitud')
+                        },
+                        articulo: {
+                            nombre: formData.get('nombre_articulo'),
+                            empresa: formData.get('empresa'),
+                            tipo: tipoArticulo,
+                            unidad_medida: formData.get('unidad_medida'),
+                            bodega: formData.get('bodega'),
+                            impuesto: tipoImpuesto,
+                            vida_util: formData.get('vida_util') || null,
+                            manejo_lotes: formData.get('manejo_lotes'),
+                            origen: formData.get('origen'),
+                            observaciones: formData.get('observaciones')
+                        },
+                        detalles_producto_terminado: tipoArticulo === 'Producto terminado' ? {
+                            marca: formData.get('producto_marca'),
+                            sabor: formData.get('producto_sabor'),
+                            gramaje: formData.get('producto_gramaje'),
+                            cliente: formData.get('producto_cliente'),
+                        } : null,
+                        estado: 'pendiente',
+                        timestamp: new Date()
+                    };
+
+                    // Guardar los datos en Firestore con la ruta correcta y segura
+                    const collectionPath = `artifacts/${appId}/public/data/solicitudes`;
+                    await addDoc(collection(db, collectionPath), data);
+                    
+                    showNotification(true);
+                    form.reset();
+                    document.getElementById('fecha_solicitud').valueAsDate = new Date();
+                    detallesProductoDiv.classList.add('hidden');
+
+                } catch (e) {
+                    console.error("Error al añadir documento: ", e);
+                    showNotification(false);
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = `<span class="flex items-center gap-2">Enviar Solicitud <i data-lucide="send-horizonal" class="h-5 w-5"></i></span>`;
+                    lucide.createIcons();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
